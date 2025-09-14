@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>فرم ثبت نام دوره</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* بک‌گراند اولیه */
+    margin: 0;
+    padding-top: 60px;
+    box-sizing: border-box;
+    position: relative;
+    transition: background-color 0.5s ease; /* انیمیشن برای تغییر رنگ بک‌گراند */
+  }
+  /* استایل برای زمانی که پیغام موفقیت نمایش داده می‌شود */
+  body.success-bg {
+    background-color: #ffffff; /* سفید */
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+    transition: opacity 0.5s ease; /* انیمیشن برای محو شدن عنوان */
+  }
+  /* استایل جدید برای مخفی کردن عنوان */
+  h1.hidden {
+    opacity: 0;
+    visibility: hidden; /* برای اطمینان از اینکه فضا رو اشغال نکنه */
+  }
+
+  .registration-form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    transition: opacity 0.5s ease, transform 0.5s ease; /* انیمیشن برای مخفی شدن فرم */
+  }
+  /* استایل جدید برای مخفی کردن فرم */
+  .registration-form.hidden {
+    opacity: 0;
+    transform: translateY(-20px); /* کمی به بالا حرکت کنه */
+    visibility: hidden; /* برای اطمینان از اینکه فضا رو اشغال نکنه */
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="tel"] {
+    width: calc(100% - 22px);
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  .gender-options {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .gender-options label {
+    display: inline-block;
+    margin: 0 15px;
+    font-size: 18px;
+    color: #555;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    border: 1px solid #ccc;
+  }
+  .gender-options input[type="radio"] {
+    display: none;
+  }
+  .gender-options input[type="radio"]:checked + label {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  .gender-options label:hover:not(:has(input[type="radio"]:checked)) {
+    background-color: #e9ecef;
+    border-color: #bbb;
+  }
+  button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  /* استایل‌های جدید برای پیغام موفقیت */
+  .success-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(40, 169, 69, 0.9);
+    color: white;
+    padding: 30px 50px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid white;
+  }
+</style>
+</head>
+<body>
+
+  <h1 id="mainTitle">فرم شرکت در دوره تعیین رشته</h1>
+
+  <div class="registration-form" id="registrationFormContainer">
+    <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbxy1aZq3mUZ4Lw-EnM-71duUSNuimS_-xaovsXnVGbhBR9CbscNHj59PIadl35dQuU/exec" method="POST">
+      <div class="form-group">
+        <label for="fullName">نام و نام خانوادگی:</label>
+        <input type="text" id="fullName" name="fullName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="region">منطقه:</label>
+        <input type="text" id="region" name="region" required>
+      </div>
+
+      <div class="form-group">
+        <label for="schoolName">نام مدرسه:</label>
+        <input type="text" id="schoolName" name="schoolName" required>
+      </div>
+
+      <div class="form-group">
+        <label>جنسیت:</label>
+        <div class="gender-options">
+          <input type="radio" id="male" name="gender" value="آقا">
+          <label for="male">آقا</label>
+
+          <input type="radio" id="female" name="gender" value="خانم">
+          <label for="female">خانم</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">شماره تماس:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10,11}" required placeholder="مثال: 09123456789">
+      </div>
+
+      <button type="submit" id="submitButton">ثبت نام</button>
+    </form>
+  </div>
+
+  <!-- المان پیغام موفقیت -->
+  <div id="successMessage" class="success-message">
+    ثبت با موفقیت انجام شد!
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const successMessage = document.getElementById('successMessage');
+    const submitButton = document.getElementById('submitButton');
+    const bodyElement = document.body;
+    const formContainer = document.getElementById('registrationFormContainer');
+    const mainTitle = document.getElementById('mainTitle'); // دسترسی به تگ h1
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      submitButton.disabled = true;
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          // مخفی کردن فرم
+          formContainer.classList.add('hidden');
+          // مخفی کردن عنوان اصلی
+          mainTitle.classList.add('hidden');
+          // نمایش پیغام موفقیت
+          successMessage.style.display = 'block';
+          // اضافه کردن کلاس برای تغییر بک‌گراند body
+          bodyElement.classList.add('success-bg');
+        } else {
+          console.error('خطا در ارسال فرم:', response.statusText);
+          alert('خطا در ثبت اطلاعات. لطفاً دوباره تلاش کنید.');
+        }
+      })
+      .catch(error => {
+        console.error('خطا در اتصال یا ارسال:', error);
+        alert('خطا در اتصال. لطفاً وضعیت اینترنت خود را بررسی کنید.');
+      })
+      .finally(() => {
+        // دکمه ثبت دیگر فعال نخواهد شد چون فرم مخفی شده است.
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
